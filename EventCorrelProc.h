@@ -130,7 +130,7 @@ class EventCorrelProc : public TGo4EventProcessor {
     void Process_FRS_Prompt_Fat(EventAnlStore* cInput, EventCorrelStore* cOutput);
     void Process_FRS_Prompt_Ge(EventAnlStore* cInput, EventCorrelStore* cOutput);
     
-     void Process_FRS_LongIso_Ge(EventAnlStore* cInput, EventCorrelStore* cOutput);
+    void Process_FRS_LongIso_Ge(EventAnlStore* cInput, EventCorrelStore* cOutput);
     
     void Process_bPlast_Fat(EventAnlStore* cInput, EventCorrelStore* cOutput);
     void Process_bPlast_Ge(EventAnlStore* cInput, EventCorrelStore* cOutput);
@@ -223,10 +223,21 @@ class EventCorrelProc : public TGo4EventProcessor {
       TH2 *hA_FRS_FatEvsT[8];
       TH2 *hA_FRS_FatE1vsE2[8];
       
-      ///96Pd LT testing
-      TH1 *hA_FRS_Fat_325_106Gated;
-      TH1 *hA_FRS_Fat_684_325Gated;
-      TH1 *hA_FRS_Fat_1415_684Gated;
+      ///Prompt fatima LT analysis 
+      TH1 *hA_FRS_Fat_LT1_start_stop;
+      TH1 *hA_FRS_Fat_LT1_start_stop_ns;
+      TH1 *hA_FRS_Fat_LT2_start_stop;
+      TH1 *hA_FRS_Fat_LT2_start_stop_ns;
+      TH1 *hA_FRS_Fat_LT3_start_stop;
+      TH1 *hA_FRS_Fat_LT3_start_stop_ns;
+      
+      TH1 *hA_FRS_Fat_LT1_stop_start;
+      TH1 *hA_FRS_Fat_LT1_stop_start_ns;
+      TH1 *hA_FRS_Fat_LT2_stop_start;
+      TH1 *hA_FRS_Fat_LT2_stop_start_ns;
+      TH1 *hA_FRS_Fat_LT3_stop_start;
+      TH1 *hA_FRS_Fat_LT3_stop_start_ns;
+      
       
       TH1 *hA_FRS_Z1Z2_X2AoQX4AoQ_FatE[8];
       
@@ -253,16 +264,15 @@ class EventCorrelProc : public TGo4EventProcessor {
       TH2 *hGe_BetaGamma_EdT[8];
       TH1 *hGe_BetaGamma_GeE1_GatedTrans;
       
-      TH1 *hFat_BetaGamma_E1_GatedTrans;
-      TH1 *hFat_95Rh_17_2X_LT;
-      TH1 *hFat_95Rh_13_2X_LT;
-      TH1 *hFat_95Rh_17_2X_LT_ns;
-      TH1 *hFat_95Rh_13_2X_LT_ns;
+      TH1 *hFat_LT1_start_stop;
+      TH1 *hFat_LT1_start_stop_ns;
+      TH1 *hFat_LT2_start_stop;
+      TH1 *hFat_LT2_start_stop_ns;
       
-      TH1 *hFat_95Rh_17_2X_LT_stop_start;
-      TH1 *hFat_95Rh_13_2X_LT_stop_start;
-      TH1 *hFat_95Rh_17_2X_LT_ns_stop_start;
-      TH1 *hFat_95Rh_13_2X_LT_ns_stop_start;
+      TH1 *hFat_LT1_stop_start;
+      TH1 *hFat_LT1_stop_start_ns;
+      TH1 *hFat_LT2_stop_start;
+      TH1 *hFat_LT2_stop_start_ns;
       
       
       TH1 *hFat_95Rh_All_LT;

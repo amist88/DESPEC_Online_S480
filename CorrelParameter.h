@@ -18,11 +18,18 @@ public:
 
   ///Define correlations of interest
  Bool_t GSetup_corr_FRS_Ge, GSetup_corr_FRS_Ge_long, GSetup_corr_FRS_fat, GSetup_corr_FRS_Aida ;
- Bool_t GSetup_corr_Beta_Gamma, GSetup_corr_Beta_Gamma_Gamma, GSetup_corr_Beta_Gamma_Fatima;
+ Bool_t GSetup_corr_FRS_Fatima_LT;
+ Bool_t GSetup_corr_Beta_Gamma, GSetup_corr_Beta_Gamma_Gamma, GSetup_corr_Beta_Gamma_Fatima, GSetup_corr_Beta_Gamma_Fatima_LT;
    ///Define Long isomer Ge conditions
  Int_t GLongGate;
  Int_t GFRS_Ge_LongIso_THigh, GFRS_Ge_LongIso_TLow, GFRS_Ge_LongIso_HBin,GFRS_Ge_LongIso_HLow, GFRS_Ge_LongIso_HHigh, GFRS_Ge_LongIso_TScale ;
- Bool_t GFRS_Ge_LongIso_incprmt;
+ Bool_t GSetup_corr_FRS_Ge_LongIso_incprmt;
+ 
+ 
+ ///Lifetime Fatima prompt gamma conditions
+ Int_t GPID_Gate_FRS_Fatima_LT;
+ Int_t GFRSFat_LT1LowStart, GFRSFat_LT1HighStart, GFRSFat_LT2LowStart, GFRSFat_LT2HighStart, GFRSFat_LT3LowStart, GFRSFat_LT3HighStart;
+ Int_t GFRSFat_LT1LowStop, GFRSFat_LT1HighStop, GFRSFat_LT2LowStop, GFRSFat_LT2HighStop, GFRSFat_LT3LowStop, GFRSFat_LT3HighStop;
 
  ///Define Beta-delayed gamma conditions
  Float_t GAidaImpDecT_Low, GAidaImpDecT_High;
@@ -35,6 +42,11 @@ public:
  Int_t GAida_Ge_WRdT_Low, GAida_Ge_WRdT_High;
  
  Int_t GAida_Fat_WRdT_Low, GAida_Fat_WRdT_High;
+ 
+ ///Lifetime Fatima Beta-delayed gamma conditions
+ Int_t GPID_Gate_Beta_Gamma_Fatima_LT;
+ Int_t GBDGFat_LT1LowStart, GBDGFat_LT1HighStart, GBDGFat_LT2LowStart, GBDGFat_LT2HighStart;
+ Int_t GBDGFat_LT1LowStop, GBDGFat_LT1HighStop, GBDGFat_LT2LowStop, GBDGFat_LT2HighStop;
 
   ///Define other conditions 
 

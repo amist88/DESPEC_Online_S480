@@ -8,12 +8,15 @@ CorrelParameter::CorrelParameter()
 {
     GSetup_corr_FRS_Ge =false;
     GSetup_corr_FRS_Ge_long =false;
-    GFRS_Ge_LongIso_incprmt = false;
+    GSetup_corr_FRS_Ge_LongIso_incprmt = false;
     GSetup_corr_FRS_fat = false;
+    GSetup_corr_FRS_Fatima_LT = false;
+    
     GSetup_corr_FRS_Aida =false;
     GSetup_corr_Beta_Gamma=false;
     GSetup_corr_Beta_Gamma_Gamma=false;
     GSetup_corr_Beta_Gamma_Fatima=false;
+    GSetup_corr_Beta_Gamma_Fatima_LT=false;
    
     GbPlast_Egate_low = 0;
     GbPlast_Egate_high = 0;
@@ -45,8 +48,17 @@ CorrelParameter::CorrelParameter()
     GAida_Fat_WRdT_High=0;
     GAida_Fat_WRdT_Low=0;
     
+    GPID_Gate_Beta_Gamma_Fatima_LT=0;
+    GBDGFat_LT1LowStart=0, GBDGFat_LT1HighStart=0, GBDGFat_LT2LowStart=0, GBDGFat_LT2HighStart=0;
+    GBDGFat_LT1LowStop=0, GBDGFat_LT1HighStop=0, GBDGFat_LT2LowStop=0, GBDGFat_LT2HighStop=0;
+    
     GFRS_Fat_TLow = 0;
     GFRS_Fat_THigh = 0;
+    GPID_Gate_FRS_Fatima_LT=0;
+    GFRSFat_LT1LowStart=0, GFRSFat_LT1HighStart=0, GFRSFat_LT2LowStart=0, GFRSFat_LT2HighStart=0;
+    GFRSFat_LT1LowStop=0, GFRSFat_LT1HighStop=0, GFRSFat_LT2LowStop=0, GFRSFat_LT2HighStop=0;
+    
+    
     GFRS_Ge_TLow = 0;
     GFRS_Ge_THigh = 0;
     
@@ -74,12 +86,15 @@ CorrelParameter::CorrelParameter(const Text_t* name)
         cout << "ERROR: CorrelParameter - Could not open file: Configuration_Files/DESPEC_General_Setup/Correlations_config.dat ! Correlations disabled!!\n"; 
          GSetup_corr_FRS_Ge =false;
          GSetup_corr_FRS_Ge_long=false;
-         GFRS_Ge_LongIso_incprmt=false;
+         GSetup_corr_FRS_Ge_LongIso_incprmt=false;
          GSetup_corr_FRS_fat=false;
+         
+         GSetup_corr_FRS_Fatima_LT = false;
          GSetup_corr_FRS_Aida =false;
          GSetup_corr_Beta_Gamma=false;
          GSetup_corr_Beta_Gamma_Gamma=false;
          GSetup_corr_Beta_Gamma_Fatima=false;
+         GSetup_corr_Beta_Gamma_Fatima_LT=false;
     
          GFRS_AIDA_TLow = -1000;
          GFRS_AIDA_THigh = 1000;
@@ -110,10 +125,15 @@ CorrelParameter::CorrelParameter(const Text_t* name)
          GAida_Fat_WRdT_High=0;
          GAida_Fat_WRdT_Low=20000;
         
+         GPID_Gate_Beta_Gamma_Fatima_LT=0;
+         GBDGFat_LT1LowStart=0, GBDGFat_LT1HighStart=0, GBDGFat_LT2LowStart=0, GBDGFat_LT2HighStart=0;
+         GBDGFat_LT1LowStop=0, GBDGFat_LT1HighStop=0, GBDGFat_LT2LowStop=0, GBDGFat_LT2HighStop=0;
          
          GFRS_Fat_TLow = -1000;
          GFRS_Fat_THigh = 1000;
-         
+         GPID_Gate_FRS_Fatima_LT=0;
+         GFRSFat_LT1LowStart=0, GFRSFat_LT1HighStart=0, GFRSFat_LT2LowStart=0, GFRSFat_LT2HighStart=0, GFRSFat_LT3LowStart=0, GFRSFat_LT3HighStart=0;
+         GFRSFat_LT1LowStop=0, GFRSFat_LT1HighStop=0, GFRSFat_LT2LowStop=0, GFRSFat_LT2HighStop=0, GFRSFat_LT3LowStop=0, GFRSFat_LT3HighStop=0;
 //          GbPlast_GAL_TLow = -1000;
 //          GbPlast_GAL_THigh = 1000;
         
@@ -132,10 +152,11 @@ cout << "CorrelParameter - reading from Configuration_Files/DESPEC_General_Setup
         ///Detector system correlation pairs
        if(IsData(file)) file >> GSetup_corr_FRS_Aida;
        if(IsData(file)) file >> GSetup_corr_FRS_Ge;
-       if(IsData(file)) file >> GSetup_corr_FRS_Ge_long >>GFRS_Ge_LongIso_incprmt;
+       if(IsData(file)) file >> GSetup_corr_FRS_Ge_long >>GSetup_corr_FRS_Ge_LongIso_incprmt;
        if(IsData(file)) file >> GSetup_corr_FRS_fat;
+       if(IsData(file)) file >> GSetup_corr_FRS_Fatima_LT;
        if(IsData(file)) file >> GSetup_corr_Beta_Gamma >> GSetup_corr_Beta_Gamma_Gamma >> GSetup_corr_Beta_Gamma_Fatima;
-
+       if(IsData(file)) file >> GSetup_corr_Beta_Gamma_Fatima_LT;
     
        ///AIDA FRS WR Time Gate
        if(IsData(file)) file >> GFRS_AIDA_TLow >>GFRS_AIDA_THigh;
@@ -149,6 +170,12 @@ cout << "CorrelParameter - reading from Configuration_Files/DESPEC_General_Setup
       
          ///FRS Fatima WR Time Gate
        if(IsData(file)) file >> GFRS_Fat_TLow >>GFRS_Fat_THigh;
+        ///Fatma Lifetime PID Gate for prompt
+       if(IsData(file)) file >> GPID_Gate_FRS_Fatima_LT;
+       ///Fatima Lifetime Energy gates prompt
+       if(IsData(file)) file >> GFRSFat_LT1LowStart >>GFRSFat_LT1HighStart >> GFRSFat_LT1LowStop >> GFRSFat_LT1HighStop;
+       if(IsData(file)) file >> GFRSFat_LT2LowStart >>GFRSFat_LT2HighStart >> GFRSFat_LT2LowStop >> GFRSFat_LT2HighStop;
+       if(IsData(file)) file >> GFRSFat_LT3LowStart >>GFRSFat_LT3HighStart >> GFRSFat_LT3LowStop >> GFRSFat_LT3HighStop;
        
        ///AIDA Implant Decay time window
        if(IsData(file)) file >>GAidaImpDecT_Low >>GAidaImpDecT_High>>GAidaImpDecT_HBin;
@@ -170,6 +197,12 @@ cout << "CorrelParameter - reading from Configuration_Files/DESPEC_General_Setup
        
        ///AIDA bPlas WR Time Gate
        if(IsData(file)) file >> GAIDA_bPlas_TLow >>GAIDA_bPlas_THigh;
+       
+       ///Fatma Lifetime PID Gate for BDG
+       if(IsData(file)) file >> GPID_Gate_Beta_Gamma_Fatima_LT;
+       ///Fatima Lifetime Energy gates (BDG)
+       if(IsData(file)) file >> GBDGFat_LT1LowStart >>GBDGFat_LT1HighStart >> GBDGFat_LT1LowStop >> GBDGFat_LT1HighStop;
+       if(IsData(file)) file >> GBDGFat_LT2LowStart >>GBDGFat_LT2HighStart >> GBDGFat_LT2LowStop >> GBDGFat_LT2HighStop;
        
 //         ///bPlas Galileo WR Time Gate
 //        if(IsData(file)) file >> GbPlast_GAL_TLow >>GbPlast_GAL_THigh;
@@ -195,11 +228,11 @@ Int_t CorrelParameter::PrintParameter(Text_t *buf, Int_t)
 {
   cout << "\n Online Analysis Correlation Parameters: " << GetName() << endl;
      
-  cout << "//////Detector Correlation pairs\n";
+  cout << "######## Correlations Setup File ############\n";
   
-  cout<<"////FRS-Aida: " <<  GSetup_corr_FRS_Aida << endl;
+   cout<<"////FRS-Aida: " <<  GSetup_corr_FRS_Aida << endl;
   
-  cout << "////FRS-Germanium Short isomers: " << GSetup_corr_FRS_Ge << ", FRS-Germanium Long isomers: " << GSetup_corr_FRS_Ge_long <<" (prompt gammas for LongCorr ("<<GFRS_Ge_LongIso_incprmt <<"))"<<  endl;
+  cout << "////FRS-Germanium Short isomers: " << GSetup_corr_FRS_Ge << ", FRS-Germanium Long isomers: " << GSetup_corr_FRS_Ge_long <<" (prompt gammas for LongCorr ("<<GSetup_corr_FRS_Ge_LongIso_incprmt <<"))"<<  endl;
   
   cout << "////FRS-Fatima Short isomers: " <<GSetup_corr_FRS_fat <<endl;
   
@@ -216,6 +249,15 @@ Int_t CorrelParameter::PrintParameter(Text_t *buf, Int_t)
   
   cout << "//////FRS Fatima WR Time Gate\n";
   cout << "////Lower: " << GFRS_Fat_TLow << "  \t Upper: = " <<  GFRS_Fat_THigh <<  endl;
+  
+  cout << "////Fatima Prompt Lifetime Analysis gates \n";
+  cout<<"//// PID Gate " << GPID_Gate_FRS_Fatima_LT<<endl;
+  cout << "////Start Lifetime1 E gate: " << GFRSFat_LT1LowStart << "  -- " << GFRSFat_LT1HighStart   << "////Stop Lifetime1: " << GFRSFat_LT1LowStop << "  -- " << GFRSFat_LT1HighStop<<endl;
+  
+  cout << "////Start Lifetime2 E Gate : " << GFRSFat_LT2LowStart << "  -- " << GFRSFat_LT2HighStart   << "////Stop Lifetime2: " << GFRSFat_LT2LowStop << "  -- " << GFRSFat_LT2HighStop<<endl;
+  
+  cout << "////Start Lifetime3 E Gate : " << GFRSFat_LT3LowStart << "  -- " << GFRSFat_LT3HighStart   << "////Stop Lifetime3: " << GFRSFat_LT3LowStop << "  -- " << GFRSFat_LT3HighStop<<endl;
+  
    
   cout << "//////Beta-delayed gamma conditions\n";
   cout << "//////AIDA Implant-Decay Time window\n";
@@ -241,8 +283,12 @@ Int_t CorrelParameter::PrintParameter(Text_t *buf, Int_t)
   cout << "////bPlastic Energy Gate limits\n";
   cout << "////Lower: " << GbPlast_Egate_low << "  \t Upper: " << GbPlast_Egate_high <<  endl;
   
- 
   
+  cout << "////Fatima Beta-DG Lifetime Analysis gates \n";
+  cout<<"//// PID Gate " << GPID_Gate_Beta_Gamma_Fatima_LT<<endl;
+  cout << "////Start Lifetime1 E gate: " << GBDGFat_LT1LowStart << "  -- " << GBDGFat_LT1HighStart   << "////Stop Lifetime1: " << GBDGFat_LT1LowStop << "  \t -- " << GBDGFat_LT1HighStop<<endl;
+  
+  cout << "////Start Lifetime2 E Gate : " << GBDGFat_LT2LowStart << "  -- " << GBDGFat_LT2HighStart   << "////Stop Lifetime2: " << GBDGFat_LT2LowStop << "  \t -- " << GBDGFat_LT2HighStop<<endl;
   
 //   cout << "//////bPlas Galileo WR Time Gate\n";
 //   cout << "////Lower: " << GbPlast_GAL_TLow << "  \t Upper: " <<  GbPlast_GAL_THigh <<  endl;
@@ -264,11 +310,13 @@ Bool_t CorrelParameter::UpdateFrom(TGo4Parameter *pp)
       GSetup_corr_FRS_Ge = from->GSetup_corr_FRS_Ge;
       GSetup_corr_FRS_Ge_long = from->GSetup_corr_FRS_Ge_long;
       GSetup_corr_FRS_fat = from->GSetup_corr_FRS_fat;
-      GFRS_Ge_LongIso_incprmt = from->GFRS_Ge_LongIso_incprmt;
+      GSetup_corr_FRS_Ge_LongIso_incprmt = from->GSetup_corr_FRS_Ge_LongIso_incprmt;
 
       GSetup_corr_Beta_Gamma = from->GSetup_corr_Beta_Gamma;
       GSetup_corr_Beta_Gamma_Gamma = from->GSetup_corr_Beta_Gamma_Gamma;
       GSetup_corr_Beta_Gamma_Fatima = from->GSetup_corr_Beta_Gamma_Fatima;
+      GSetup_corr_Beta_Gamma_Fatima_LT = from->GSetup_corr_Beta_Gamma_Fatima_LT;
+      
       
       GFRS_AIDA_TLow = from->GFRS_AIDA_TLow;
       GFRS_AIDA_THigh = from->GFRS_AIDA_THigh;
@@ -299,11 +347,28 @@ Bool_t CorrelParameter::UpdateFrom(TGo4Parameter *pp)
       
       GFRS_Fat_TLow = from->GFRS_Fat_TLow; 
       GFRS_Fat_THigh = from->GFRS_Fat_THigh; 
-     
-      
+      GPID_Gate_FRS_Fatima_LT=from->GPID_Gate_FRS_Fatima_LT;
+       GFRSFat_LT1LowStart= from-> GFRSFat_LT1LowStart;
+       GFRSFat_LT1HighStart= from-> GFRSFat_LT1HighStart;
+       GFRSFat_LT2LowStart= from-> GFRSFat_LT2LowStart;
+       GFRSFat_LT2HighStart= from->GFRSFat_LT2HighStart;
+       GFRSFat_LT1LowStop= from-> GFRSFat_LT1LowStop;
+       GFRSFat_LT1HighStop= from-> GFRSFat_LT1HighStop;
+       GFRSFat_LT2LowStop= from-> GFRSFat_LT2LowStop;
+       GFRSFat_LT2HighStop= from->GFRSFat_LT2HighStop;
+
       GAIDA_bPlas_TLow = from->GAIDA_bPlas_TLow;
       GAIDA_bPlas_THigh = from->GAIDA_bPlas_THigh;
       
+      GPID_Gate_Beta_Gamma_Fatima_LT=from->GPID_Gate_Beta_Gamma_Fatima_LT;
+       GBDGFat_LT1LowStart= from-> GBDGFat_LT1LowStart;
+       GBDGFat_LT1HighStart= from-> GBDGFat_LT1HighStart;
+       GBDGFat_LT2LowStart= from-> GBDGFat_LT2LowStart;
+       GBDGFat_LT2HighStart= from->GBDGFat_LT2HighStart;
+       GBDGFat_LT1LowStop= from-> GBDGFat_LT1LowStop;
+       GBDGFat_LT1HighStop= from-> GBDGFat_LT1HighStop;
+       GBDGFat_LT2LowStop= from-> GBDGFat_LT2LowStop;
+       GBDGFat_LT2HighStop= from->GBDGFat_LT2HighStop;
 //       GFRS_AIDA_DSSD1 = from->GFRS_AIDA_DSSD1;
 //       GFRS_AIDA_DSSD2 = from->GFRS_AIDA_DSSD2;
 //       GFRS_AIDA_DSSD3 = from->GFRS_AIDA_DSSD3;

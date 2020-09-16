@@ -149,7 +149,7 @@ Bool_t EventAnlProc::BuildEvent(TGo4EventElement* dest)
     if(Used_Systems[0])  Make_FRS_Histos();
     if(Used_Systems[1]) Make_Aida_Histos();
    // if (Used_Systems[2] && VMEorTAMEX_bPlas==true) Make_Plastic_VME_Histos();
-    if (Used_Systems[2] && VMEorTAMEX_bPlas==false){ 
+    if(Used_Systems[2] && VMEorTAMEX_bPlas==false){ 
         Make_Plastic_Tamex_Histos();
         Make_Fatima_Tamex_Histos();
         
@@ -486,7 +486,6 @@ if(Fatmult > 0){
           GalE[i] = pInput->fGal_E[i];
           GalEventT[i]=pInput->fGal_Event_T[i];
           GalT[i] = pInput->fGal_T[i];
-          //TODO: NH - this is dumb for now to avoid cahgning calib file
           int id = GalDet[i] * 3 + GalCrys[i];
           GalE_Cal[i] = (fCal->AGal[id]* pow( GalE[i],2) + fCal->BGal[id]*  GalE[i] + fCal->CGal[id]);
         }

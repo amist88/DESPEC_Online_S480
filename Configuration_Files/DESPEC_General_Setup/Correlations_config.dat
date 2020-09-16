@@ -1,54 +1,103 @@
-#Correlations of Interest
-#FRS_Aida
+                    #############################################################
+                    ################# Correlations Setup File ###################
+                    #############################################################
+                    
+################# Active of correlations of interest (0 = Off, 1 = On ###################
+
+## FRS_Aida
 0
-#FRS Germanium 'prompt' isomers
+
+## FRS Germanium 'prompt' gammas ####
 1
-#FRS Germanium 'delayed' isomers [1 0] only 'delayed' gammas, [1 1] include 'prompt' gammas)
+
+## FRS Germanium 'delayed' gammas [1 0] only 'delayed' gammas, [1 1] include 'prompt' gammas) ####
 0 0
-#FRS Fatima 'prompt' isomers
+
+## FRS Fatima 'prompt' gammas ####
 1
-#Beta-Delayed Gammas (FRS-AIDA-bPlast gammas) 1 1 1 = [On], [Include Ge Gam-Gam], [Include Fatima]  
+
+## Include Fatima Lifetime Analysis for 'prompt' gammas ####
+1
+
+## Beta-Delayed Gammas (FRS-AIDA-bPlast gammas) 1 1 1 = [On], [Include Ge Gam-Gam], [Include Fatima] #### 
 1 1 1
 
-#
-#Setup correlation conditions for each detector array
-#
-#dT AIDA-FRS White Rabbit
+## Include Fatima Lifetime Analysis for Beta-delayed gammas ####
+1
+
+##############################################################
+#### Setup correlation conditions for each detector array  ###
+##############################################################
+
+## dT AIDA-FRS White Rabbit ####
 -1500 10000
 
-#dT FRS-Germanium White Rabbit
+## dT FRS-Germanium White Rabbit ####
 -200 20000
 
-#FRS-Galileo Long Isomer PID Gate Number
+################# Germanium Long isomers ##############
+
+## FRS-Galileo Long Isomer PID Gate Number ####
 0
 
-#dT FRS-Galileo Time Gate Long Isomers (low, high, Histo Bin, Histo Low, Histo High, Time Scale Parameter)
+## dT FRS-Galileo Time Gate Long Isomers (low, high, Histo Bin, Histo Low, Histo High, Time Scale Parameter)
 0 1000000 1000 0 1000 1000
 
-#dT FRS-Fatima White Rabbit
-#-500 2000
--100000 100000
-## Beta-delayed gamma conditions
-#dT Implant-Decay Time Window: Low, High, dT Histogram Binning (in seconds)
+#############################################################
+
+## dT FRS-Fatima White Rabbit ####
+-500 2000
+#-100000 100000
+
+######### Fatima prompt lifetime analysis gates #############
+
+## PID Gate Number
+5
+
+## Lifetime Energy Gates (Start E low, E high: Stop E low, E High) ####
+## Start/stop Lifetime 1 (Low-High):
+1378 1460 667 711
+
+## Start-stop Lifetime 2:
+670 695 305 345
+
+## Start-stop Lifetime 3:
+305 345 96 118
+
+#############################################################
+############## Beta-delayed gamma conditions ################
+#############################################################
+#### dT Implant-Decay Time Window: Low, High, dT Histogram Binning (in seconds) ####
 1 13 120
 
-#Aida Front-Back Matching conditions (dT, dE)
+#### Aida Front-Back Matching conditions (dT, dE) ####
 3000 200
 
-#Aida Max Decay Energy conditions (Front, Back)
-2000 2000
+#### Aida Max Decay Energy conditions (Front, Back) ####
+2000 2000 
 
-#bPlastic ToT Gate
+#### bPlastic ToT Gate ####
 500 60000
 
-#dT AIDA(decays)WR -Germanium WR
+#### dT AIDA(decays)WR -Germanium WR ####
 11000 17000
 
-#dT AIDA(decays)WR -Fatima WR
+#### dT AIDA(decays)WR -Fatima WR ####
 11000 18000
 
-#dT AIDA(decays)WR-bPlast WR
+#### dT AIDA(decays)WR-bPlast WR ####
 12000 18000
 
-###
+## Fatima Beta-delayed gammas lifetime analysis gates ########
+#### PID Gate Number
+5
+
+#### Lifetime Energy Gates (BDG Fatima) (Start E low, E high: Stop E low, E High) ####
+#### Start/stop Lifetime 1:
+365 413 706 743
+
+#### Start-stop Lifetime 2:
+706 743 1315 1382
+
+################################ End of Correlations Config ##################################
 

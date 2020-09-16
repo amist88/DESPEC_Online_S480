@@ -602,7 +602,7 @@ Bool_t EventCorrelProc::BuildEvent(TGo4EventElement* dest)
        }
         
         ///Now add the prompt gammas to the histograms. This can be selected on and off in correlations.dat
-        if (fCorrel->GFRS_Ge_LongIso_incprmt==true){
+        if (fCorrel->GSetup_corr_FRS_Ge_LongIso_incprmt==true){
            dT_frsge_prompt = 0;
         // bool Ge_dT_cut=false;
             if(cInputMain->pFRS_WR>0 && cInputMain->pGAL_WR>0)  dT_frsge_prompt = (cInputMain->pGAL_WR - cInputMain->pFRS_WR);
@@ -657,17 +657,37 @@ Bool_t EventCorrelProc::BuildEvent(TGo4EventElement* dest)
 
       hA_FRS_FatE = MakeTH1('D', "Correlations/FRS-Prompt_Fatima/Fat_EnergySum_allFRS", "Germanium Energy FRS (all) gated",2000,0,4000);
       
-//       hA_FRS_Fat_325_106Gated = MakeTH2('D', "Correlations/FRS-Prompt_Fatima/96Pd_Lifetime/FatdT_339keV", "",1000,-50,50,1600,0,1600, "dT(ns)","Energy (keV)");
+//       hA_FRS_Fat_LT1_start_stop = MakeTH2('D', "Correlations/FRS-Prompt_Fatima/96Pd_Lifetime/FatdT_339keV", "",1000,-50,50,1600,0,1600, "dT(ns)","Energy (keV)");
 //    
-//       hA_FRS_Fat_684_325Gated = MakeTH2('D', "Correlations/FRS-Prompt_Fatima/96Pd_Lifetime/FatdT_680keV", "",1000,-50,50,1600,0,1600, "dT(ns)","Energy (keV)");
+//       hA_FRS_Fat_LT2_start_stop = MakeTH2('D', "Correlations/FRS-Prompt_Fatima/96Pd_Lifetime/FatdT_680keV", "",1000,-50,50,1600,0,1600, "dT(ns)","Energy (keV)");
 //       
-//       hA_FRS_Fat_1415_684Gated = MakeTH2('D', "Correlations/FRS-Prompt_Fatima/96Pd_Lifetime/FatdT_1415keV", "",1000,-50,50,1600,0,1600, "dT(ns)","Energy (keV)");
+//       hA_FRS_Fat_LT3_start_stop = MakeTH2('D', "Correlations/FRS-Prompt_Fatima/96Pd_Lifetime/FatdT_1415keV", "",1000,-50,50,1600,0,1600, "dT(ns)","Energy (keV)");
       
-      hA_FRS_Fat_325_106Gated = MakeTH1('D', "Correlations/FRS-Prompt_Fatima/96Pd_Lifetime/FatdT_6+_325_106keV", "",1000,-50,50, "dT(ns)","Energy (keV)");
-    
-      hA_FRS_Fat_684_325Gated = MakeTH1('D', "Correlations/FRS-Prompt_Fatima/96Pd_Lifetime/FatdT_4+_684_325keV", "",1000,-50,50, "dT(ns)","Energy (keV)");
+      hA_FRS_Fat_LT1_start_stop = MakeTH1('D', "Correlations/FRS-Prompt_Fatima/Lifetime/Start-Stop/FRS_Fat_LT1_start_stop", "FRS-Fatima Lifetime Start-Stop Lifetime 1",20000,-10000,10000, "dT(ps)","Counts");
       
-      hA_FRS_Fat_1415_684Gated = MakeTH1('D', "Correlations/FRS-Prompt_Fatima/96Pd_Lifetime/FatdT_2+_1415_684keV", "",1000,-50,50, "dT(ns)","Energy (keV)");
+      hA_FRS_Fat_LT1_start_stop_ns = MakeTH1('D', "Correlations/FRS-Prompt_Fatima/Lifetime/Start-Stop/FRS_Fat_LT1_start_stop", "FRS-Fatima Lifetime Start-Stop Lifetime 1 ns ",1000,-50,50, "dT(ns)","Counts/100ps");
+      
+      hA_FRS_Fat_LT2_start_stop = MakeTH1('D', "Correlations/FRS-Prompt_Fatima/Lifetime/Start-Stop/FRS_Fat_LT2_start_stop", "FRS-Fatima Lifetime Start-Stop Lifetime 2",20000,-10000,10000, "dT(ps)","Counts");
+      
+      hA_FRS_Fat_LT2_start_stop_ns = MakeTH1('D', "Correlations/FRS-Prompt_Fatima/Lifetime/Start-Stop/FRS_Fat_LT2_start_stop", "FRS-Fatima Lifetime Start-Stop Lifetime 2 ns",1000,-50,50, "dT(ns)","Counts/100ps");
+      
+      hA_FRS_Fat_LT3_start_stop = MakeTH1('D', "Correlations/FRS-Prompt_Fatima/Lifetime/Start-Stop/FRS_Fat_LT3_start_stop", "FRS-Fatima Lifetime Start-Stop Lifetime 3",20000,-10000,10000, "dT(ps)","Counts");
+      
+      hA_FRS_Fat_LT3_start_stop_ns = MakeTH1('D', "Correlations/FRS-Prompt_Fatima/Lifetime/Start-Stop/FRS_Fat_LT3_start_stop", "FRS-Fatima Lifetime Start-Stop Lifetime 3 ns",1000,-50,50, "dT(ns)","Counts/100ps");
+      
+      
+      hA_FRS_Fat_LT1_stop_start = MakeTH1('D', "Correlations/FRS-Prompt_Fatima/Lifetime/Stop-Start/FRS_Fat_LT1_stop_start", "FRS-Fatima Lifetime Stop-Start Lifetime 1",20000,-10000,10000, "dT(ps)","Counts");
+      
+      hA_FRS_Fat_LT1_stop_start_ns = MakeTH1('D', "Correlations/FRS-Prompt_Fatima/Lifetime/Stop-Start/FRS_Fat_LT1_stop_start_ns", "FRS-Fatima Lifetime Stop-Start Lifetime 1 ns",1000,-50,50, "dT(ns)","Counts/100ps");
+      
+      hA_FRS_Fat_LT2_stop_start = MakeTH1('D', "Correlations/FRS-Prompt_Fatima/Lifetime/Stop-Start/FRS_Fat_LT2_stop_start", "FRS-Fatima Lifetime Stop-Start Lifetime 2",20000,-10000,10000, "dT(ps)","Counts");
+      
+      hA_FRS_Fat_LT2_stop_start_ns = MakeTH1('D', "Correlations/FRS-Prompt_Fatima/Lifetime/Stop-Start/FRS_Fat_LT2_stop_start_ns", "FRS-Fatima Lifetime Stop-Start Lifetime 2 ns",1000,-50,50, "dT(ns)","Counts/100ps");
+      
+      hA_FRS_Fat_LT3_stop_start = MakeTH1('D', "Correlations/FRS-Prompt_Fatima/Lifetime/Stop-Start/FRS_Fat_LT3_stop_start", "FRS-Fatima Lifetime Stop-Start Lifetime 3",20000,-10000,10000, "dT(ps)","Counts");
+      
+      hA_FRS_Fat_LT3_stop_start_ns = MakeTH1('D', "Correlations/FRS-Prompt_Fatima/Lifetime/Stop-Start/FRS_Fat_LT3_stop_start_ns", "FRS-Fatima Lifetime Stop-Start Lifetime 3 ns",1000,-50,50, "dT(ns)","Counts/100ps");
+      
    
       
       for(int i=0; i<8; i++){
@@ -763,7 +783,7 @@ Bool_t EventCorrelProc::BuildEvent(TGo4EventElement* dest)
         }
     }
               
-              ///Test fatima dT gate on 325, 680keV, 1415 keV gammas in 96Pd
+              ///Tested 16.09.20 fatima dT gate on 325, 680keV, 1415 keV gammas in 96Pd
               
               
                if(dT_FRS_Fatima>fCorrel->GFRS_Fat_TLow && dT_FRS_Fatima < fCorrel->GFRS_Fat_THigh){
@@ -773,51 +793,74 @@ Bool_t EventCorrelProc::BuildEvent(TGo4EventElement* dest)
               
                if((cInputMain->pFat_TDC_T[k] - cInputMain->pSC41[0])*0.025 > 25.){
                             
-                
-             ///TODO Update Correlations.dat to on/off, Gate set and "Energy 1, Energy 2"
-                    // if(cInputMain->pFRS_ZAoQ_pass[6]==true && gate==6){
-              if(cID_Z_AoQ_corrstep_fat[6]->Test(cInputMain->pFRS_AoQ, cInputMain->pFRS_z)==true ){
-                      
-         ///2+ lifetime
-        for(int l=0; l<cInputMain->pFatmult; l++){
-            if(k!=l){
+               ///Start with Fatima prompt lifetime analysis 
+               if(fCorrel->GSetup_corr_FRS_Fatima_LT==true){
+                   if(cInputMain->pFRS_ZAoQ_pass[fCorrel->GPID_Gate_FRS_Fatima_LT]==true ){
 
-    if(cInputMain->pFat_QDC_E[k]>1378 && cInputMain->pFat_QDC_E[k]<1460 && cInputMain->pFat_QDC_E[l]>667 && cInputMain->pFat_QDC_E[l]<711  && (cInputMain->pFat_TDC_T[l] - cInputMain->pSC41[0])*0.025 > 25.) {
-                            
-        hA_FRS_Fat_1415_684Gated->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);
-                            
-                               }
-                            }
+      /// --------------------Start-Stop -------------------------------------///           
+      
+        for(int l=0; l<cInputMain->pFatmult; l++){
+            if(k!=l && (cInputMain->pFat_TDC_T[l] - cInputMain->pSC41[0])*0.025 > 25.){
+        ///Lifetime 1 (2+ 96Pd)
+        if(cInputMain->pFat_QDC_E[k]>fCorrel->GFRSFat_LT1LowStart && cInputMain->pFat_QDC_E[k]<fCorrel->GFRSFat_LT1HighStart && cInputMain->pFat_QDC_E[l]>fCorrel->GFRSFat_LT1LowStop && cInputMain->pFat_QDC_E[l]<fCorrel->GFRSFat_LT1HighStop) {
+            
+            hA_FRS_Fat_LT1_start_stop->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*25);
+            hA_FRS_Fat_LT1_start_stop_ns->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);
+
                          }
                          
-            ///4+ Lifetime
-            for(int l=0; l<cInputMain->pFatmult; l++){
-                         if(k!=l){
-                        
-        if(cInputMain->pFat_QDC_E[k]>670 && cInputMain->pFat_QDC_E[k]<695 && cInputMain->pFat_QDC_E[l]>305 && cInputMain->pFat_QDC_E[l]<345  &&(cInputMain->pFat_TDC_T[l] - cInputMain->pSC41[0])*0.025 > 25.) {
+        ///Lifetime 2 (4+ 96Pd)            
+        if(cInputMain->pFat_QDC_E[k]>fCorrel->GFRSFat_LT2LowStart && cInputMain->pFat_QDC_E[k]<fCorrel->GFRSFat_LT2HighStart && cInputMain->pFat_QDC_E[l]>fCorrel->GFRSFat_LT2LowStop && cInputMain->pFat_QDC_E[l]<fCorrel->GFRSFat_LT2HighStop) {
                             
-                       hA_FRS_Fat_684_325Gated->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);
+             hA_FRS_Fat_LT2_start_stop_ns->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);
+             hA_FRS_Fat_LT2_start_stop->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*25);
                             
-                            }
-                         }    
+                         
                     }
                       
-            ///6+ lifetime
-            for(int l=0; l<cInputMain->pFatmult; l++){
-                if(k!=l){
-      if(cInputMain->pFat_QDC_E[k]>305 && cInputMain->pFat_QDC_E[k]<345 && cInputMain->pFat_QDC_E[l]>96 && cInputMain->pFat_QDC_E[l]<118  && (cInputMain->pFat_TDC_T[l] - cInputMain->pSC41[0])*0.025 > 25.) {
-            hA_FRS_Fat_325_106Gated->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);
+        ///Lifetime 3 (6+ 96Pd)           
+        if(cInputMain->pFat_QDC_E[k]>fCorrel->GFRSFat_LT3LowStart && cInputMain->pFat_QDC_E[k]<fCorrel->GFRSFat_LT3HighStart && cInputMain->pFat_QDC_E[l]>fCorrel->GFRSFat_LT3LowStop && cInputMain->pFat_QDC_E[l]<fCorrel->GFRSFat_LT3HighStop) {
+          
+            hA_FRS_Fat_LT3_start_stop->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*25);
+            hA_FRS_Fat_LT3_start_stop_ns->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);
                        
+                                                }
+                                                
+            /// --------------------Stop-Start -------------------------------------///                                            
+         ///Lifetime 1 (2+ 96Pd)
+        if(cInputMain->pFat_QDC_E[k]>fCorrel->GFRSFat_LT1LowStop && cInputMain->pFat_QDC_E[k]<fCorrel->GFRSFat_LT1HighStop && cInputMain->pFat_QDC_E[l]>fCorrel->GFRSFat_LT1LowStart && cInputMain->pFat_QDC_E[l]<fCorrel->GFRSFat_LT1HighStart) {
+            
+            hA_FRS_Fat_LT1_start_stop->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*25);
+            hA_FRS_Fat_LT1_start_stop_ns->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);
+
+                         }
+                         
+        ///Lifetime 2 (4+ 96Pd)            
+        if(cInputMain->pFat_QDC_E[k]>fCorrel->GFRSFat_LT2LowStop && cInputMain->pFat_QDC_E[k]<fCorrel->GFRSFat_LT2HighStop && cInputMain->pFat_QDC_E[l]>fCorrel->GFRSFat_LT2LowStart && cInputMain->pFat_QDC_E[l]<fCorrel->GFRSFat_LT2HighStart) {
+                            
+             hA_FRS_Fat_LT2_start_stop_ns->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);
+             hA_FRS_Fat_LT2_start_stop->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*25);
+                            
+                         
+                    }
+                      
+        ///Lifetime 3 (6+ 96Pd)           
+        if(cInputMain->pFat_QDC_E[k]>fCorrel->GFRSFat_LT3LowStop && cInputMain->pFat_QDC_E[k]<fCorrel->GFRSFat_LT3HighStop && cInputMain->pFat_QDC_E[l]>fCorrel->GFRSFat_LT3LowStart && cInputMain->pFat_QDC_E[l]<fCorrel->GFRSFat_LT3HighStart) {
+          
+            hA_FRS_Fat_LT3_start_stop->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*25);
+            hA_FRS_Fat_LT3_start_stop_ns->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);
+                       
+                                                }                                        
+                    ///End of Stop Start                             
                                             }
                                         }
-                                    }
-                                 } 
-                               }
+                                    } 
+                                }///End of Fatima prompt lifetime analysis
+                             }
                          }        
                    }
                 }
-            // }
-          //}
+        
  
 
  /**----------------------------------------------------------------------------------------------**/
@@ -837,7 +880,7 @@ Bool_t EventCorrelProc::BuildEvent(TGo4EventElement* dest)
      hA_Dec_Fatima_dT=  MakeTH1('I',"Correlations/Beta-Gamma/Aida_Dec-Fatima_WR_dT","T Diff Aida Decay -Fatima WR ",10000,-100000,100000,"Time[ns]", "Counts");
      
      if(fCorrel->GSetup_corr_Beta_Gamma_Gamma==true){
-      hGe_BetaGamma_GeE1_GatedTrans = MakeTH1('I',"Correlations/Beta-Gamma/Germanium/Energy/Gamma-Gamma/GeE1_GatedTrans","Fatima 95Pd BDG 382,716,1351 gated",4000,0,2000,"Energy (keV)", "Counts");
+//       hGe_BetaGamma_GeE1_GatedTrans = MakeTH1('I',"Correlations/Beta-Gamma/Germanium/Energy/Gamma-Gamma/GeE1_GatedTrans","Fatima 95Pd BDG 382,716,1351 gated",4000,0,2000,"Energy (keV)", "Counts");
      }
       char name[50];
      for(int i =0; i<8; i++){
@@ -873,36 +916,35 @@ Bool_t EventCorrelProc::BuildEvent(TGo4EventElement* dest)
      }
      ///Fatima
      if(fCorrel->GSetup_corr_Beta_Gamma_Fatima==true){
-         hFat_BetaGamma_E1_GatedTrans = MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Energy/Fat_E1_GatedTrans","Fatima 95Pd BDG 382,716,1351 gated",2000,0,2000,"Energy (keV)", "Counts");
+
+        
          
-         hFat_95Rh_17_2X_LT= MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Lifetime/Start-Stop/Fat_95Rh_17_2+Start-Stop","Fatima 95Pd dT 382,716 gated",20000,-10000,10000,"Time [ps]", "Counts/ps");
-         
-         hFat_95Rh_17_2X_LT_ns= MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Lifetime/Start-Stop/Fat_95Rh_17_2+_nsStart-Stop","Fatima 95Pd dT ns 382,716 gated",100,-50,50,"Time [ns]", "Counts/1ns");
-         
-         hFat_95Rh_13_2X_LT= MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Lifetime/Start-Stop/Fat_95Rh_13_2+Start-Stop","Fatima 95Pd dT 716 1351 gated",20000,-10000,10000,"Time [ps]", "Counts/ps");
-         
-         hFat_95Rh_13_2X_LT_ns= MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Lifetime/Start-Stop/Fat_95Rh_13_2+_nsStart-Stop","Fatima 95Pd dT ns 716 1351 gated",100,-50,50,"Time [ns]", "Counts/1ns");
-         
-         
-         
-         hFat_95Rh_17_2X_LT_stop_start= MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Lifetime/Stop-Start/Fat_95Rh_17_2+_stop_start","Fatima 95Pd dT 382,716 gated",20000,-10000,10000,"Time [ps]", "Counts/ps");
-         
-         hFat_95Rh_17_2X_LT_ns_stop_start= MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Lifetime/Stop-Start/Fat_95Rh_17_2+_ns_stop_start","Fatima 95Pd dT ns 716,382 gated",100,-50,50,"Time [ns]", "Counts/1ns");
-         
-         hFat_95Rh_13_2X_LT_stop_start= MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Lifetime/Stop-Start/Fat_95Rh_13_2+_stop_start","Fatima 95Pd dT 1351, 716 gated",20000,-10000,10000,"Time [ps]", "Counts/ps");
-         
-         hFat_95Rh_13_2X_LT_ns_stop_start= MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Lifetime/Stop-Start/Fat_95Rh_13_2+_ns_stop_start","Fatima 95Pd dT ns 1351, 716 gated",100,-50,50,"Time [ns]", "Counts/1ns");
-         
-         
-         hFat_95Rh_All_LT= MakeTH2('D',"Correlations/Beta-Gamma/Fatima/Lifetime/Fat_95Rh_allEvsdT","Fatima 95Pd dT vs E", 2000, 0, 2000, 2000,-10000,10000,"dT/10ps", "Fat Energy (keV)");
-      
-         
-         
+
          for(int i=0; i<8; i++){
           hFat_BetaGamma_E[i] = MakeTH1('F', Form("Correlations/Beta-Gamma/Fatima/Energy/Fat_BetaGam_Energy_PIDGated%d", i), Form("Fatima Energy Beta-Gamma PID %d", i), 2000, 0, 2000, "Energy/keV");
           
           hFat_BetaGamma_E1_E2[i] = MakeTH2('D',Form("Correlations/Beta-Gamma/Fatima/Gamma-Gamma/BGFat_E1vsGeE2_Gate%d",i),Form("Fatima Gamma-Gamma Beta Corr Gate: %d",i), 2000, 0, 2000, 2000,0,2000,"Fatima Energy1 (keV)", "Fatima Energy2 (keV)");
          }
+     
+        if(fCorrel->GSetup_corr_Beta_Gamma_Fatima_LT==true){
+         hFat_LT1_start_stop= MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Lifetime/Start-Stop/Fat_LT1_start_stop","Fatima Lifetime 1 Start-Stop gated",20000,-10000,10000,"Time [ps]", "Counts/ps");
+         
+         hFat_LT1_start_stop_ns= MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Lifetime/Start-Stop/Fat_LT1_start_stop_ns","Fatima Lifetime 1 Start-Stop gated (ns)",100,-50,50,"Time [ns]", "Counts/1ns");
+         
+         hFat_LT2_start_stop= MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Lifetime/Start-Stop/Fat_LT2_start_stop","Fatima 95Pd Lifetime 2 gated",20000,-10000,10000,"Time [ps]", "Counts/ps");
+         
+         hFat_LT2_start_stop_ns= MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Lifetime/Start-Stop/Fat_LT2_start_stop_ns","Fatima 95Pd Lifetime 2 gated (ns)",100,-50,50,"Time [ns]", "Counts/1ns");
+///---------------------------------------------------------------------------------------------//
+         
+         hFat_LT1_stop_start= MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Lifetime/Stop-Start/Fat_LT1_stop_start","Fatima Lifetime 1 Stop-Start gated",20000,-10000,10000,"Time [ps]", "Counts/ps");
+         
+         hFat_LT1_stop_start_ns= MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Lifetime/Stop-Start/Fat_LT1_stop_start_ns","Fatima Lifetime 1 Stop-Start gated (ns)",100,-50,50,"Time [ns]", "Counts/1ns");
+         
+         hFat_LT2_stop_start= MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Lifetime/Stop-Start/Fat_LT2_stop_start","Fatima Lifetime 2 Stop-Start gated",20000,-10000,10000,"Time [ps]", "Counts/ps");
+         
+         hFat_LT2_stop_start_ns= MakeTH1('I',"Correlations/Beta-Gamma/Fatima/Lifetime/Stop-Start/hFat_LT2_stop_start_ns","Fatima Lifetime 2 Stop-Start gated (ns)",100,-50,50,"Time [ns]", "Counts/1ns");
+              
+          }
      }
 }
  /**------------------------------------(FRS)-AIDA-bPlastic  (Beta Decay)----------------------------**/
@@ -1077,13 +1119,13 @@ Bool_t EventCorrelProc::BuildEvent(TGo4EventElement* dest)
      if(dechit.Time!=0 && cInputMain->pFAT_WR!=0) hA_Dec_Fatima_dT->Fill(dechit.Time-cInputMain->pFAT_WR);
      
           /// Initialising...  
-dT = 1E15;
-lastdT = 1E15;
-strx = 0;
-stry = 0; 
-DecTime = 0;
-GateTemp = 100; 
-goodhit = 1;
+            dT = 1E15;
+            lastdT = 1E15;
+            strx = 0;
+            stry = 0; 
+            DecTime = 0;
+            GateTemp = 100; 
+            goodhit = 1;
 
             
 for(int i=0;i<8;i++){
@@ -1206,10 +1248,7 @@ for(int i=0;i<8;i++){
                         if (x==y) continue;
                         hGe_BetaGamma_GeE1_GeE2[i]->Fill(GeE[x],GeE[y]);
                         
-                        ///Gate on all transitions in 95Rh...
-                        if(i==5){
-                 if( (GeE[x]>378 && GeE[x]<385) ||(GeE[x]>711 && GeE[x]<722)|| (GeE[x]>1347 && GeE[x]<1355)) hGe_BetaGamma_GeE1_GatedTrans->Fill( GeE[y]); 
-                            }
+                       
                        }
                    }
                }
@@ -1243,59 +1282,56 @@ for(int i=0;i<8;i++){
                  if(k==l) continue;
                 if(cInputMain->pFat_QDC_E[k]>0 && cInputMain->pFat_QDC_E[l]>0) hFat_BetaGamma_E1_E2[i]->Fill(cInputMain->pFat_QDC_E[k], cInputMain->pFat_QDC_E[l]); 
                 
-                ///Gate on all transitions in 95Rh...
-                if(i==5){
-                if(cInputMain->pFat_QDC_E[k]>362 && cInputMain->pFat_QDC_E[k]<413)hFat_BetaGamma_E1_GatedTrans->Fill( cInputMain->pFat_QDC_E[l]); 
-              
-                if(cInputMain->pFat_QDC_E[k]>706 && cInputMain->pFat_QDC_E[k]<743) hFat_BetaGamma_E1_GatedTrans->Fill( cInputMain->pFat_QDC_E[l]); 
-              
-                if (cInputMain->pFat_QDC_E[k]>1315 && cInputMain->pFat_QDC_E[k]<1382)hFat_BetaGamma_E1_GatedTrans->Fill( cInputMain->pFat_QDC_E[l]); 
-              
-              ///All E vs dT
-                      hFat_95Rh_All_LT->Fill(cInputMain->pFat_QDC_E[k], (cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*25);///Try ps
-  ///---------------------------------------- Start-Stop -----------------------------///               
+                
+                if(fCorrel->GSetup_corr_Beta_Gamma_Fatima_LT==true){
+                if(i==fCorrel->GPID_Gate_Beta_Gamma_Fatima_LT){
+                
+             
+  ///---------------------------------------- BDG Start-Stop -----------------------------///               
                      
                       
-                 ///17/2+ Lifetime gate on 382 and 716keV
-                 if(cInputMain->pFat_QDC_E[k]>362 && cInputMain->pFat_QDC_E[k]<413 && cInputMain->pFat_QDC_E[l]>706 && cInputMain->pFat_QDC_E[l]<743 && cInputMain->pFat_TDC_T[k]>0 && cInputMain->pFat_TDC_T[l]>0) {
+                 ///Lifetime 1 Start-Stop gates
+                 if(cInputMain->pFat_QDC_E[k]>fCorrel->GBDGFat_LT1LowStart && cInputMain->pFat_QDC_E[k]<fCorrel->GBDGFat_LT1HighStart && cInputMain->pFat_QDC_E[l]>fCorrel->GBDGFat_LT1LowStop && cInputMain->pFat_QDC_E[l]<fCorrel->GBDGFat_LT1HighStop && cInputMain->pFat_TDC_T[k]>0 && cInputMain->pFat_TDC_T[l]>0) {
                             
-                              hFat_95Rh_17_2X_LT->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*25);///Try ps   
+                              hFat_LT1_start_stop->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*25);///Try ps   
                               
-                              hFat_95Rh_17_2X_LT_ns->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);///Try ns   
+                              hFat_LT1_start_stop_ns->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);///Try ns   
                               
                        } 
                        
-                 ///13/2+ Lifetime gate on 716 and 1351keV
-                 if(cInputMain->pFat_QDC_E[k]>706 && cInputMain->pFat_QDC_E[k]<743 && cInputMain->pFat_QDC_E[l]>1315 && cInputMain->pFat_QDC_E[l]<1382 && cInputMain->pFat_TDC_T[k]>0 && cInputMain->pFat_TDC_T[l]>0) {
+                ///Lifetime 2 Start-Stop gates
+                 if(cInputMain->pFat_QDC_E[k]>fCorrel->GBDGFat_LT2LowStart && cInputMain->pFat_QDC_E[k]<fCorrel->GBDGFat_LT2HighStart && cInputMain->pFat_QDC_E[l]>fCorrel->GBDGFat_LT2LowStop && cInputMain->pFat_QDC_E[l]<fCorrel->GBDGFat_LT2HighStop && cInputMain->pFat_TDC_T[k]>0 && cInputMain->pFat_TDC_T[l]>0) {
                             
-                              hFat_95Rh_13_2X_LT->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*25);///Try ps 
+                              hFat_LT2_start_stop->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*25);///Try ps 
                               
-                               hFat_95Rh_13_2X_LT_ns->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);///Try ns 
+                              hFat_LT2_start_stop_ns->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);///Try ns 
                             
                             } 
                             
-      ///------------------------------------ Stop-start -----------------------------///               
+      ///------------------------------------ BDG Stop-start -----------------------------///               
                      
                       
-                 ///17/2+ Lifetime gate on 716 and 382keV
+                 ///Lifetime 1 Stop-Start gates
     
-                     if(cInputMain->pFat_QDC_E[k]>706 && cInputMain->pFat_QDC_E[k]<743 && cInputMain->pFat_QDC_E[l]>362 && cInputMain->pFat_QDC_E[l]<413 && cInputMain->pFat_TDC_T[k]>0 && cInputMain->pFat_TDC_T[l]>0) {
+                     if(cInputMain->pFat_QDC_E[k]>fCorrel->GBDGFat_LT1LowStop && cInputMain->pFat_QDC_E[k]<fCorrel->GBDGFat_LT1HighStop && cInputMain->pFat_QDC_E[l]>fCorrel->GBDGFat_LT1LowStart && cInputMain->pFat_QDC_E[l]<fCorrel->GBDGFat_LT1HighStart && cInputMain->pFat_TDC_T[k]>0 && cInputMain->pFat_TDC_T[l]>0) {
                             
-                              hFat_95Rh_17_2X_LT_stop_start->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*25);///Try ps   
+                              hFat_LT1_stop_start->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*25);///Try ps   
                               
-                              hFat_95Rh_17_2X_LT_ns_stop_start->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);///Try ns   
+                              hFat_LT1_stop_start_ns->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);///Try ns   
                               
                        } 
                        
-                 ///13/2+ Lifetime gate on 1351keV  and 716keV
-                     if(cInputMain->pFat_QDC_E[k]>1315 && cInputMain->pFat_QDC_E[k]<1382 && cInputMain->pFat_QDC_E[l]>706 && cInputMain->pFat_QDC_E[l]<743 && cInputMain->pFat_TDC_T[k]>0 && cInputMain->pFat_TDC_T[l]>0) {
+                     ///Lifetime 2 Stop-Start gates
+                     if(cInputMain->pFat_QDC_E[k]>fCorrel->GBDGFat_LT2LowStop && cInputMain->pFat_QDC_E[k]<fCorrel->GBDGFat_LT2HighStop && cInputMain->pFat_QDC_E[l]>fCorrel->GBDGFat_LT2LowStart && cInputMain->pFat_QDC_E[l]<fCorrel->GBDGFat_LT2HighStart && cInputMain->pFat_TDC_T[k]>0 && cInputMain->pFat_TDC_T[l]>0) {
                             
-                              hFat_95Rh_13_2X_LT_stop_start->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*25);///Try ps 
+                              hFat_LT2_stop_start->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*25);///Try ps 
                               
-                              hFat_95Rh_13_2X_LT_ns_stop_start->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);///Try ns 
+                              hFat_LT2_stop_start_ns->Fill((cInputMain->pFat_TDC_T[k]-cInputMain->pFat_TDC_T[l])*0.025);///Try ns 
                             
-                          } 
+                                } 
+                          
    ///---------------------------------------- End of Centroid shift checks--------------------///   
+                           }
                         }
                     }
                 }
