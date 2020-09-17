@@ -174,7 +174,11 @@ class EventCorrelProc : public TGo4EventProcessor {
         Long64_t Ge_FirstT_prompt;
         Int_t Ge_mult_long;
         Int_t Ge_mult_prompt;
-       
+        
+        double GeE_Long[GALILEO_MAX_HITS];
+        double GeT_Long[GALILEO_MAX_HITS];
+        double GeE_Prm_Long[GALILEO_MAX_HITS];
+        double GeT_Prm_Long[GALILEO_MAX_HITS];
         Long64_t ts;
       
 //       std::vector<std::vector<TH2*>> hA_FRS_ZAoQ_implants_strip_xy;
@@ -252,8 +256,9 @@ class EventCorrelProc : public TGo4EventProcessor {
       
       TH1 *hA_FRS_PID_GeE_LongIso;
       TH2 *hA_FRS_GeEvsT_LongIsoGated;
+      TH2 *hA_FRS_GeE1vsGeE2_LongIsoGated;
       
-      TH1 *hGe_BetaGamma;
+      TH1 *hGe_BetaGamma;     
       TH1 *hAidaImpDecdT;
       TH1 *hA_Dec_Ge_dT;
       TH1 *hA_Dec_bPlas_dT;

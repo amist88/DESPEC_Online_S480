@@ -25,8 +25,9 @@ CorrelParameter::CorrelParameter()
     GFRS_AIDA_THigh = 0;
     GAIDA_bPlas_TLow = 0;
     GAIDA_bPlas_THigh = 0;
-    
-    GLongGate = 0;
+    GGe1_Ge2_Low =0;
+    GGe1_Ge2_High =0;
+    GLongIso_PID_Gate = 0;
     GFRS_Ge_LongIso_THigh = 0;
     GFRS_Ge_LongIso_TLow = 0;
     GFRS_Ge_LongIso_HBin = 0;
@@ -47,7 +48,8 @@ CorrelParameter::CorrelParameter()
     
     GAida_Fat_WRdT_High=0;
     GAida_Fat_WRdT_Low=0;
-    
+    GFat1_Fat2_Low=0;
+    GFat1_Fat2_High=0;
     GPID_Gate_Beta_Gamma_Fatima_LT=0;
     GBDGFat_LT1LowStart=0, GBDGFat_LT1HighStart=0, GBDGFat_LT2LowStart=0, GBDGFat_LT2HighStart=0;
     GBDGFat_LT1LowStop=0, GBDGFat_LT1HighStop=0, GBDGFat_LT2LowStop=0, GBDGFat_LT2HighStop=0;
@@ -103,7 +105,9 @@ CorrelParameter::CorrelParameter(const Text_t* name)
          
          GFRS_Ge_TLow = -1000;
          GFRS_Ge_THigh = 1000;
-         GLongGate=0;
+         GLongIso_PID_Gate=0;
+         GGe1_Ge2_Low= -20000;
+         GGe1_Ge2_High = 20000;
          GFRS_Ge_LongIso_TLow = 0;
          GFRS_Ge_LongIso_THigh = 20000;
          GFRS_Ge_LongIso_HBin = 700;
@@ -124,7 +128,8 @@ CorrelParameter::CorrelParameter(const Text_t* name)
          
          GAida_Fat_WRdT_High=0;
          GAida_Fat_WRdT_Low=20000;
-        
+         GFat1_Fat2_Low =-20000;
+         GFat1_Fat2_High=20000;
          GPID_Gate_Beta_Gamma_Fatima_LT=0;
          GBDGFat_LT1LowStart=0, GBDGFat_LT1HighStart=0, GBDGFat_LT2LowStart=0, GBDGFat_LT2HighStart=0;
          GBDGFat_LT1LowStop=0, GBDGFat_LT1HighStop=0, GBDGFat_LT2LowStop=0, GBDGFat_LT2HighStop=0;
@@ -162,14 +167,18 @@ cout << "CorrelParameter - reading from Configuration_Files/DESPEC_General_Setup
        if(IsData(file)) file >> GFRS_AIDA_TLow >>GFRS_AIDA_THigh;
        ///FRS Galileo WR Time Gate
        if(IsData(file)) file >> GFRS_Ge_TLow >>GFRS_Ge_THigh;
+       /// Gamma-Gamma Germanium Time gate 
+        if(IsData(file)) file >> GGe1_Ge2_Low >>GGe1_Ge2_High;
         ///FRS Galileo PID Gate Long isomer
-       if(IsData(file)) file >> GLongGate;
+       if(IsData(file)) file >> GLongIso_PID_Gate;
       
        ///FRS Galileo WR Time Gate Long isomer
        if(IsData(file)) file >> GFRS_Ge_LongIso_TLow >> GFRS_Ge_LongIso_THigh>> GFRS_Ge_LongIso_HBin>> GFRS_Ge_LongIso_HLow>> GFRS_Ge_LongIso_HHigh>> GFRS_Ge_LongIso_TScale;
       
          ///FRS Fatima WR Time Gate
        if(IsData(file)) file >> GFRS_Fat_TLow >>GFRS_Fat_THigh;
+       /// Gamma-Gamma Germanium Time gate 
+       if(IsData(file)) file >> GFat1_Fat2_Low >>GFat1_Fat2_High;
         ///Fatma Lifetime PID Gate for prompt
        if(IsData(file)) file >> GPID_Gate_FRS_Fatima_LT;
        ///Fatima Lifetime Energy gates prompt
@@ -244,11 +253,18 @@ Int_t CorrelParameter::PrintParameter(Text_t *buf, Int_t)
   cout << "//////FRS Galileo Time Gate\n";
   cout << "////Lower: " << GFRS_Ge_TLow << "  \t Upper:  " <<  GFRS_Ge_THigh <<  endl;
   
+  cout << "//////Germanium Gamma-Gamma Time gate\n";
+  cout << "////Lower: " << GGe1_Ge2_Low << "  \t Upper:  " <<  GGe1_Ge2_High <<  endl;
+  
+  
   cout << "//////FRS Galileo Time Gate Long isomer\n";
-  cout << "////PID Gate Num: " << GLongGate << "  Lower: " << GFRS_Ge_LongIso_TLow << "  Upper: " <<  GFRS_Ge_LongIso_THigh << "\t Long Isomer Histo: (Bin, Low, High) ("<< GFRS_Ge_LongIso_HBin <<" " << GFRS_Ge_LongIso_HLow <<" " << GFRS_Ge_LongIso_HHigh << ") Long Isomer Scale Time "<< GFRS_Ge_LongIso_TScale  <<endl;
+  cout << "////PID Gate Num: " << GLongIso_PID_Gate << "  Lower: " << GFRS_Ge_LongIso_TLow << "  Upper: " <<  GFRS_Ge_LongIso_THigh << "\t Long Isomer Histo: (Bin, Low, High) ("<< GFRS_Ge_LongIso_HBin <<" " << GFRS_Ge_LongIso_HLow <<" " << GFRS_Ge_LongIso_HHigh << ") Long Isomer Scale Time "<< GFRS_Ge_LongIso_TScale  <<endl;
   
   cout << "//////FRS Fatima WR Time Gate\n";
   cout << "////Lower: " << GFRS_Fat_TLow << "  \t Upper: = " <<  GFRS_Fat_THigh <<  endl;
+  
+  cout << "//////Fatima Gamma-Gamma Time gate (ns)\n";
+  cout << "////Lower: " << GFat1_Fat2_Low << "  \t Upper:  " <<  GFat1_Fat2_High <<  endl;
   
   cout << "////Fatima Prompt Lifetime Analysis gates \n";
   cout<<"//// PID Gate " << GPID_Gate_FRS_Fatima_LT<<endl;
@@ -324,7 +340,9 @@ Bool_t CorrelParameter::UpdateFrom(TGo4Parameter *pp)
       
       GFRS_Ge_TLow = from->GFRS_Ge_TLow; 
       GFRS_Ge_THigh = from->GFRS_Ge_THigh; 
-      GLongGate = from-> GLongGate;
+      GGe1_Ge2_Low = from->GGe1_Ge2_Low;
+      GGe1_Ge2_High = from->GGe1_Ge2_High;
+      GLongIso_PID_Gate = from-> GLongIso_PID_Gate;
       GFRS_Ge_LongIso_TLow = from-> GFRS_Ge_LongIso_TLow;
       GFRS_Ge_LongIso_THigh = from-> GFRS_Ge_LongIso_THigh;
       GFRS_Ge_LongIso_HBin = from-> GFRS_Ge_LongIso_HBin;
@@ -347,6 +365,8 @@ Bool_t CorrelParameter::UpdateFrom(TGo4Parameter *pp)
       
       GFRS_Fat_TLow = from->GFRS_Fat_TLow; 
       GFRS_Fat_THigh = from->GFRS_Fat_THigh; 
+      GFat1_Fat2_Low = from->GFat1_Fat2_Low;
+      GFat1_Fat2_High = from->GFat1_Fat2_High;
       GPID_Gate_FRS_Fatima_LT=from->GPID_Gate_FRS_Fatima_LT;
        GFRSFat_LT1LowStart= from-> GFRSFat_LT1LowStart;
        GFRSFat_LT1HighStart= from-> GFRSFat_LT1HighStart;
@@ -357,10 +377,10 @@ Bool_t CorrelParameter::UpdateFrom(TGo4Parameter *pp)
        GFRSFat_LT2LowStop= from-> GFRSFat_LT2LowStop;
        GFRSFat_LT2HighStop= from->GFRSFat_LT2HighStop;
 
-      GAIDA_bPlas_TLow = from->GAIDA_bPlas_TLow;
-      GAIDA_bPlas_THigh = from->GAIDA_bPlas_THigh;
+       GAIDA_bPlas_TLow = from->GAIDA_bPlas_TLow;
+       GAIDA_bPlas_THigh = from->GAIDA_bPlas_THigh;
       
-      GPID_Gate_Beta_Gamma_Fatima_LT=from->GPID_Gate_Beta_Gamma_Fatima_LT;
+       GPID_Gate_Beta_Gamma_Fatima_LT=from->GPID_Gate_Beta_Gamma_Fatima_LT;
        GBDGFat_LT1LowStart= from-> GBDGFat_LT1LowStart;
        GBDGFat_LT1HighStart= from-> GBDGFat_LT1HighStart;
        GBDGFat_LT2LowStart= from-> GBDGFat_LT2LowStart;

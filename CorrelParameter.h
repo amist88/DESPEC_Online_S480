@@ -20,8 +20,15 @@ public:
  Bool_t GSetup_corr_FRS_Ge, GSetup_corr_FRS_Ge_long, GSetup_corr_FRS_fat, GSetup_corr_FRS_Aida ;
  Bool_t GSetup_corr_FRS_Fatima_LT;
  Bool_t GSetup_corr_Beta_Gamma, GSetup_corr_Beta_Gamma_Gamma, GSetup_corr_Beta_Gamma_Fatima, GSetup_corr_Beta_Gamma_Fatima_LT;
+ ///Gamma Gamma Germanium Time Gate
+ Int_t GGe1_Ge2_Low, GGe1_Ge2_High;
+ 
+  ///Gamma Gamma Fatima Time Gate
+ Int_t GFat1_Fat2_Low, GFat1_Fat2_High;
+ 
    ///Define Long isomer Ge conditions
- Int_t GLongGate;
+ //Int_t GLongGate;
+ Int_t GLongIso_PID_Gate;
  Int_t GFRS_Ge_LongIso_THigh, GFRS_Ge_LongIso_TLow, GFRS_Ge_LongIso_HBin,GFRS_Ge_LongIso_HLow, GFRS_Ge_LongIso_HHigh, GFRS_Ge_LongIso_TScale ;
  Bool_t GSetup_corr_FRS_Ge_LongIso_incprmt;
  
